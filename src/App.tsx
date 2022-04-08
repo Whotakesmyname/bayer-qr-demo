@@ -96,7 +96,7 @@ const WhitePage = (props: {}) => {
   
   return (
     <>
-      <Layout style={{minHeight: "100vh"}}>
+      <Layout style={{minHeight: "90vh"}}>
         <Header>Sample Whitepage</Header>
         <Layout>
           <Sider>Other tabs</Sider>
