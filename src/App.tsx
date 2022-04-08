@@ -1,4 +1,4 @@
-import { Button, Col, List, Row, Typography } from 'antd';
+import { Button, Col, Layout, List, Row, Typography } from 'antd';
 import React from 'react';
 import {useState} from 'react';
 import './App.css';
@@ -8,6 +8,8 @@ import {
   Link
 } from "react-router-dom";
 import {QrReader} from 'react-qr-reader';
+import QrCode from 'react-qr-code';
+const {Header, Footer, Sider, Content} = Layout;
 
 export default function App() {
   return (
@@ -15,6 +17,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path='scanner' element={<Scanner />} />
+        <Route path='whitepage' element={<WhitePage />} />
       </Routes>
     </div>
   );
@@ -77,6 +80,47 @@ const Scanner = (props: {}) => {
           />
         </Col>
       </Row>
+    </>
+  )
+}
+
+const WhitePage = (props: {}) => {
+  const [data, setData] = useState<WhitePageData>({
+    serial_number: "TPAB123456",
+    license: "00-01-02-AB-CD",
+    computer_name: "M12345678-TPAB123456",
+    injector_type: "Stellant2",
+    firmware: "SR-CRU-123.45-C1.02_WIN_OS;S2-EFG-100.23-A0.01_XY_AJ;BAR-XYZF-1.01_OK",
+    display_type: "black TCRU",
+  });
+  
+  return (
+    <>
+      <Layout style={{minHeight: "100vh"}}>
+        <Header>Sample Whitepage</Header>
+        <Layout>
+          <Sider>Other tabs</Sider>
+          <Content>
+            <Row>
+              <Col span={8}>
+                <div>Serial Number: TPAB123456</div>
+                <div>License: 00-01-02-AB-CD</div>
+                <div>Computer Name: M12345678-TPAB123456</div>
+              </Col>
+              <Col span={8}>
+                <div>Injector State: Idle</div>
+                <div>Type: Stellant2</div>
+                <div>Firmware: SR-CRU-123.45-C1.02_WIN_OS;S2-EFG-100.23-A0.01_XY_AJ;BAR-XYZF-1.01_OK</div>
+                <div>Display Type: black TCRU</div>
+              </Col>
+              <Col span={8}>
+                <QrCode value={encoder(data)} />
+              </Col>
+            </Row>
+          </Content>
+        </Layout>
+        <Footer>Proof of Concept</Footer>
+      </Layout>
     </>
   )
 }
