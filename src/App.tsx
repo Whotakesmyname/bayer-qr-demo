@@ -68,14 +68,7 @@ const Scanner = (props: {}) => {
             onResult={(result, error) => {
               if (!!result) {
                 let text = result?.getText();
-                setData(Object.entries({
-                  serial_number: "TPAB123456",
-                  license: "00-01-02-AB-CD",
-                  computer_name: "M12345678-TPAB123456",
-                  injector_type: "Stellant2",
-                  firmware: "SR-CRU-123.45-C1.02_WIN_OS;S2-EFG-100.23-A0.01_XY_AJ;BAR-XYZF-1.01_OK",
-                  display_type: "black TCRU",
-                }));
+                setData(Object.entries(decoder(text)));
               }
               if (!!error) {
                 console.log(error);
