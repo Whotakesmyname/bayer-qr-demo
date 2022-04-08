@@ -52,7 +52,7 @@ const decoder = (input: string) => {
 
 const Scanner = (props: {}) => {
   const [data, setData] = useState(Object.entries({
-                  serial_number: "TPAB123456",
+                  serial_number: "Testing",
                   license: "00-01-02-AB-CD",
                   computer_name: "M12345678-TPAB123456",
                   injector_type: "Stellant2",
